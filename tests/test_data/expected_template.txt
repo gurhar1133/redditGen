@@ -1,0 +1,27 @@
+
+Here are some examples of generated reddit posts and their corresponding prompts.
+Each example reflects the tone, depth, and engagement style commonly found in that subreddit.
+        
+prompt: 
+   subreddit: r/relationship_advice
+   topic: My relationship story
+
+reddit post result:
+    Title: example post title
+
+    Body: example post body
+📌 *Why this is a good example: what makes this a good example: its good.*
+        
+prompt: 
+   subreddit: r/relationship_advice
+   topic: My relationship story
+
+reddit post result:
+    Title: another example post title
+
+    Body: another example post body
+📌 *Why this is a good example: what makes this a good example: its good.*
+        
+prompt: 
+   subreddit: {subreddit}
+   topic: {topic}

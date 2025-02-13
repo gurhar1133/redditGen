@@ -1,0 +1,14 @@
+{
+    "examples": [
+        {
+            "title": "example post title",
+            "body": "example post body",
+            "rationale": "what makes this a good example: its good"
+        },
+        {
+            "title": "another example post title",
+            "body": "another example post body",
+            "rationale": "what makes this a good example: its good"
+        }
+    ]
+}

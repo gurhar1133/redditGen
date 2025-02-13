@@ -11,7 +11,11 @@ from langchain_core.runnables import RunnableLambda
 from redditGen.template import TemplateGen
 # TODO: remove unnecessary imports
 
+# TODO: read this stuff from conf
 FINE_TUNED_MODEL_PATH = ""
+_FEW_SHOT_EXAMPLES_PATH = ""
+_SUBREDDIT = ""
+_TOPIC = ""
 
 
 class RedditLLMChain:
@@ -42,7 +46,11 @@ class RedditLLMChain:
         # Wrap the pipeline in LangChain using HuggingFacePipeline
         self.llm = HuggingFacePipeline(pipeline=self.text_generator)
         self.full_prompt = PromptTemplate(
-            template=TemplateGen().get_template(),
+            template=TemplateGen(
+                _FEW_SHOT_EXAMPLES_PATH,
+                _SUBREDDIT,
+                _TOPIC,
+            ).get_template(),
             input_variables=["subreddit", "topic"]
         )
         self.llm_chain = LLMChain(prompt=self.full_prompt, llm=llm)
