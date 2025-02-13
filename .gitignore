@@ -1,0 +1,7 @@
+# examples for prompt engineering
+fewshot_examples/
+
+# not needed
+.DS_Store
+
+__pycache__/

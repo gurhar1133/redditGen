@@ -8,10 +8,11 @@ from langchain import LLMChain
 from langchain_core.prompts import PromptTemplate
 from langchain_community.llms import HuggingFacePipeline
 from langchain_core.runnables import RunnableLambda
+from redditGen.template import TemplateGen
 # TODO: remove unnecessary imports
 
 FINE_TUNED_MODEL_PATH = ""
-TEMPLATE = "Subreddit: {subreddit}\nTopic: {topic}\nGenerate a Reddit post title and body."
+
 
 class RedditLLMChain:
     def __init__(self):
@@ -41,7 +42,7 @@ class RedditLLMChain:
         # Wrap the pipeline in LangChain using HuggingFacePipeline
         self.llm = HuggingFacePipeline(pipeline=self.text_generator)
         self.full_prompt = PromptTemplate(
-            template=TEMPLATE,
+            template=TemplateGen().get_template(),
             input_variables=["subreddit", "topic"]
         )
         self.llm_chain = LLMChain(prompt=self.full_prompt, llm=llm)
