@@ -1,5 +1,6 @@
 from transformers import TrainerCallback
 
+# TODO: remove comments
 class EarlyStoppingOnTrainLoss(TrainerCallback):
     def __init__(self, patience=3, min_delta=0.001):
         self.patience = patience  # Number of steps without improvement before stopping
@@ -39,4 +40,3 @@ class SaveBestTrainingLossCallback(TrainerCallback):
                 self.best_loss = current_loss
                 print(f"🔥 New Best Training Loss: {current_loss:.4f} — Saving Model!")
                 kwargs["model"].save_pretrained(args.output_dir)
-                
