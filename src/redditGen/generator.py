@@ -1,21 +1,18 @@
 import torch
-import pandas as pd
-import callbacks
-from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, pipeline, TrainingArguments, Trainer, EarlyStoppingCallback
-from datasets import load_dataset, Dataset
-from peft import LoraConfig, get_peft_model
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from langchain import LLMChain
 from langchain_core.prompts import PromptTemplate
 from langchain_community.llms import HuggingFacePipeline
 from langchain_core.runnables import RunnableLambda
 from redditGen.template import TemplateGen
-# TODO: remove unnecessary imports
+from redditGen.conf_loader import ConfLoader
 
-# TODO: read this stuff from conf
-FINE_TUNED_MODEL_PATH = ""
-_FEW_SHOT_EXAMPLES_PATH = ""
-_SUBREDDIT = ""
-_TOPIC = ""
+# TODO: some sort of init function for all of this?
+_config = ConfLoader().conf
+FINE_TUNED_MODEL_PATH = _config["finetuned_model_path"]
+_FEW_SHOT_EXAMPLES_PATH = _config["fewshot_examples_path"]
+_SUBREDDIT = _config["subreddit"]
+_TOPIC = _config["topic"]
 
 
 class RedditLLMChain:

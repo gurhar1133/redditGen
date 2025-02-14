@@ -1,16 +1,18 @@
 import torch
 import pandas as pd
 import callbacks
-from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, pipeline, TrainingArguments, Trainer, EarlyStoppingCallback
+from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer, EarlyStoppingCallback
 from datasets import load_dataset, Dataset
 from peft import LoraConfig, get_peft_model
-from langchain import LLMChain
-from langchain_core.prompts import PromptTemplate
-from langchain_community.llms import HuggingFacePipeline
-from langchain_core.runnables import RunnableLambda
+from redditGen.conf_loader import ConfLoader
+# TODO: should automate the installation process for all of these?
 
-DATASET_PATH = ""
-MODEL_NAME = "teknium/OpenHermes-2.5-Mistral-7B"
+# TODO: some sort of init() for this and also read training hyperParameters into
+# training params
+_config = ConfLoader().conf
+DATASET_PATH = _config["dataset_path"]
+MODEL_NAME = _config["model"]
+HYPER_PARAMS = _config["training_hyper_parameters"]
 
 def tokenize_function(examples):
     formatted_texts = [
